@@ -10,6 +10,7 @@ from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import streamlit as st
 
 
@@ -21,7 +22,7 @@ GM_ICON_PATH = BASE_DIR / "assets" / "gm-icon.png"
 AUTH_PATH = BASE_DIR / "config" / "auth.json"
 TARGET_PATH = BASE_DIR / "data" / "team_targets.json"
 UPLOAD_DIR = BASE_DIR / "data" / "uploads"
-PROJECT_FILTER_VERSION = "active-only-20260513"
+PROJECT_FILTER_VERSION = "active-only-20260514"
 
 MONTH_LABELS = {
     1: "Jan",
@@ -339,13 +340,22 @@ def inject_css() -> None:
             width: 112px;
             height: 56px;
             border-radius: 112px 112px 0 0;
+            background: conic-gradient(from 270deg at 50% 100%, #e3e5eb 0deg 180deg, transparent 180deg 360deg);
+            overflow: hidden;
+        }
+        .gauge-fill {
+            position: absolute;
+            inset: 0;
             background:
                 conic-gradient(
                     from 270deg at 50% 100%,
-                    var(--accent-orange) 0 var(--gauge-angle),
-                    #e3e5eb var(--gauge-angle) 180deg,
+                    #e67e22 0deg,
+                    #f2c94c 88deg,
+                    #72a98f 180deg,
                     transparent 180deg 360deg
                 );
+            -webkit-mask-image: conic-gradient(from 270deg at 50% 100%, #000 0deg var(--gauge-angle), transparent var(--gauge-angle) 360deg);
+            mask-image: conic-gradient(from 270deg at 50% 100%, #000 0deg var(--gauge-angle), transparent var(--gauge-angle) 360deg);
         }
         .gauge-arc::after {
             content: "";
@@ -356,6 +366,7 @@ def inject_css() -> None:
             height: 38px;
             border-radius: 76px 76px 0 0;
             background: #ffffff;
+            z-index: 2;
         }
         .gauge-needle {
             position: absolute;
@@ -364,10 +375,11 @@ def inject_css() -> None:
             width: 4px;
             height: 43px;
             border-radius: 999px;
-            background: #404a5c;
+            background: #1f5aa6;
             transform-origin: 50% 100%;
             transform: rotate(var(--needle-angle));
-            box-shadow: 0 1px 2px rgba(24, 29, 39, 0.22);
+            box-shadow: 0 2px 5px rgba(31, 90, 166, 0.30);
+            z-index: 4;
         }
         .gauge-hub {
             position: absolute;
@@ -376,9 +388,10 @@ def inject_css() -> None:
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            background: #404a5c;
+            background: #1f5aa6;
             border: 3px solid #ffffff;
-            box-shadow: 0 1px 4px rgba(24, 29, 39, 0.18);
+            box-shadow: 0 2px 6px rgba(31, 90, 166, 0.28);
+            z-index: 5;
         }
         .gauge-scale {
             position: absolute;
@@ -524,20 +537,38 @@ def inject_css() -> None:
         }
         [data-testid="stMain"] div[data-baseweb="select"] > div {
             background-color: #ffffff !important;
-            border-color: #4b5563 !important;
-            box-shadow: inset 0 0 0 1px #4b5563 !important;
+            border-color: #d0d5dd !important;
+            box-shadow: inset 0 0 0 1px #d0d5dd !important;
+            transition: border-color 140ms ease, box-shadow 140ms ease;
+        }
+        [data-testid="stMain"] div[data-baseweb="select"] > div:hover {
+            border-color: #98a2b3 !important;
+            box-shadow: inset 0 0 0 1px #98a2b3 !important;
+        }
+        [data-testid="stMain"] div[data-baseweb="select"] > div:focus-within {
+            border-color: var(--morandi-blue) !important;
+            box-shadow: 0 0 0 3px rgba(143, 182, 216, 0.24), inset 0 0 0 1px var(--morandi-blue) !important;
         }
         [data-testid="stMain"] div[data-baseweb="select"] svg {
-            color: #4b5563 !important;
-            fill: #4b5563 !important;
+            color: #667085 !important;
+            fill: #667085 !important;
         }
         [data-testid="stMain"] div[data-baseweb="select"] input {
             color: #1f2937 !important;
         }
         [data-testid="stMain"] div[data-baseweb="input"] > div {
             background-color: #ffffff !important;
-            border-color: #4b5563 !important;
-            box-shadow: inset 0 0 0 1px #4b5563 !important;
+            border-color: #d0d5dd !important;
+            box-shadow: inset 0 0 0 1px #d0d5dd !important;
+            transition: border-color 140ms ease, box-shadow 140ms ease;
+        }
+        [data-testid="stMain"] div[data-baseweb="input"] > div:hover {
+            border-color: #98a2b3 !important;
+            box-shadow: inset 0 0 0 1px #98a2b3 !important;
+        }
+        [data-testid="stMain"] div[data-baseweb="input"] > div:focus-within {
+            border-color: var(--morandi-blue) !important;
+            box-shadow: 0 0 0 3px rgba(143, 182, 216, 0.24), inset 0 0 0 1px var(--morandi-blue) !important;
         }
         [data-testid="stMain"] div[data-baseweb="input"] input {
             color: #1f2937 !important;
@@ -754,7 +785,7 @@ def render_kpi_cards(cards: list[dict[str, str]]) -> None:
             html.append(
                 f"<div class='kpi-card gauge-kpi{empty_class}'>"
                 f"<div class='gauge-meter' style='--gauge-angle: {gauge_angle:.1f}deg; --needle-angle: {needle_angle:.1f}deg;'>"
-                "<div class='gauge-arc'></div>"
+                "<div class='gauge-arc'><div class='gauge-fill'></div></div>"
                 "<div class='gauge-needle'></div>"
                 "<div class='gauge-hub'></div>"
                 "<div class='gauge-scale'><span>0</span><span>100%</span></div>"
@@ -959,8 +990,42 @@ def financial_page(df: pd.DataFrame, data_path: Path, selected_team: str | None)
                 "AOT": [sum_col(df, col) for col in MONTHLY_AOT_COLUMNS],
             }
         )
-        fig = px.bar(monthly_values, x="Period", y="AOT", text_auto=".2s", color_discrete_sequence=["#ff8a00"])
-        fig.update_traces(width=0.50, marker_line_width=0, textposition="outside")
+        gradient_steps = 18
+        blue_gradient = [
+            "#bfd6ea",
+            "#b3cde4",
+            "#a6c3df",
+            "#99b9d9",
+            "#8cafd3",
+            "#7fa5ce",
+            "#729bc8",
+            "#6591c2",
+            "#5887bd",
+            "#4d7db5",
+            "#4273ad",
+            "#3869a5",
+            "#305f9c",
+            "#295792",
+            "#244f87",
+            "#20487d",
+            "#1c4173",
+            "#183b69",
+        ]
+        fig = go.Figure()
+        for step, color in enumerate(blue_gradient):
+            is_top_layer = step == gradient_steps - 1
+            fig.add_bar(
+                x=monthly_values["Period"],
+                y=monthly_values["AOT"] / gradient_steps,
+                customdata=monthly_values["AOT"],
+                marker=dict(color=color, line=dict(width=0)),
+                width=0.50,
+                text=monthly_values["AOT"] if is_top_layer else None,
+                texttemplate="%{text:.2s}" if is_top_layer else None,
+                textposition="outside" if is_top_layer else None,
+                hovertemplate="<b>%{x}</b><br>AOT: ¥%{customdata:,.0f}<extra></extra>",
+                showlegend=False,
+            )
         fig.update_layout(
             height=340,
             margin=dict(l=8, r=8, t=18, b=4),
@@ -969,8 +1034,11 @@ def financial_page(df: pd.DataFrame, data_path: Path, selected_team: str | None)
             plot_bgcolor="white",
             paper_bgcolor="white",
             font=dict(color="#4b5563", size=12),
+            uniformtext=dict(mode="show", minsize=11),
             bargap=0.36,
+            barmode="relative",
         )
+        fig.update_traces(textfont=dict(color="#243b53", size=12, weight=700))
         fig.update_yaxes(gridcolor="#edf0f4", zerolinecolor="#dfe3ea")
         fig.update_xaxes(tickfont=dict(color="#5f6675"))
         st.plotly_chart(fig, width="stretch")
@@ -1090,7 +1158,10 @@ def project_page(df: pd.DataFrame, data_path: Path) -> None:
     st.markdown("<div class='section-title'>Project list</div>", unsafe_allow_html=True)
     base_all = df[df["Job category"].astype(str) != "子项目"].copy()
     default_project_categories = ["本年执行中项目"]
-    if st.session_state.get("project_filter_version") != PROJECT_FILTER_VERSION:
+    if (
+        st.session_state.get("project_filter_version") != PROJECT_FILTER_VERSION
+        or "project_category_filter" not in st.session_state
+    ):
         st.session_state["project_category_filter"] = default_project_categories
         st.session_state["project_filter_version"] = PROJECT_FILTER_VERSION
     f1, f2 = st.columns([0.32, 0.68])
