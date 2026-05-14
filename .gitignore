@@ -1,0 +1,23 @@
+# Python / Streamlit runtime
+__pycache__/
+*.py[cod]
+.streamlit/secrets.toml
+streamlit.log
+streamlit.err.log
+
+# Local source data and generated uploads
+*.xlsx
+*.xls
+data/uploads/
+data/team_targets.json
+
+# Local auth and company/internal documents
+config/auth.json
+*.docx
+ipsos-logo.png.png
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

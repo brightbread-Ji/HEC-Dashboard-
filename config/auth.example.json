@@ -1,0 +1,14 @@
+{
+  "bp": {
+    "username": "bp",
+    "password": "change-me",
+    "display_name": "Finance BP"
+  },
+  "teams": [
+    {
+      "team": "Example Team",
+      "username": "example_team",
+      "password": "change-me"
+    }
+  ]
+}
