@@ -584,6 +584,433 @@ def inject_css() -> None:
         [data-testid="stDataFrame"] [data-testid="stProgress"] > div {
             background-color: var(--morandi-green-bg) !important;
         }
+
+        /* Premium dashboard refresh */
+        :root {
+            --canvas: #f6f8fb;
+            --surface: #ffffff;
+            --surface-soft: #f9fbfd;
+            --ink-strong: #172033;
+            --ink: #273244;
+            --muted: #697487;
+            --muted-soft: #8a94a6;
+            --line: #e3e8ef;
+            --line-strong: #ccd6e2;
+            --blue-900: #123b63;
+            --blue-800: #1f5aa6;
+            --blue-700: #2f6fae;
+            --blue-100: #eaf2f9;
+            --teal-700: #187b8d;
+            --green-700: #6f9a85;
+            --shadow-card: 0 12px 32px rgba(20, 34, 55, 0.08);
+            --shadow-soft: 0 6px 18px rgba(20, 34, 55, 0.06);
+        }
+        .stApp {
+            background:
+                linear-gradient(180deg, #f8fafc 0%, var(--canvas) 46%, #f3f6fa 100%) !important;
+            color: var(--ink) !important;
+        }
+        [data-testid="stHeader"] {
+            background: rgba(248, 250, 252, 0.88) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.82);
+        }
+        [data-testid="stToolbar"] {
+            right: 0.75rem;
+        }
+        [data-testid="stSidebar"] {
+            background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%) !important;
+            border-right: 1px solid #e1e8f0 !important;
+            box-shadow: 8px 0 28px rgba(20, 34, 55, 0.045);
+        }
+        [data-testid="stSidebar"] > div:first-child {
+            padding-top: 1.6rem;
+        }
+        [data-testid="stSidebar"] img {
+            margin-bottom: 0.75rem;
+        }
+        [data-testid="stSidebar"] .stMarkdown p {
+            color: var(--ink);
+        }
+        [data-testid="stSidebar"] [data-testid="stCaptionContainer"] {
+            color: var(--muted) !important;
+        }
+        [data-testid="stSidebar"] hr {
+            margin: 1rem 0;
+            border-color: #e5ebf2;
+        }
+        [data-testid="stSidebar"] button {
+            border-radius: 7px !important;
+            min-height: 2.35rem;
+            font-weight: 680 !important;
+            border-color: #d6e0ea !important;
+        }
+        .block-container {
+            max-width: 1540px !important;
+            margin-top: 2.35rem !important;
+            margin-bottom: 2rem !important;
+            padding: 1.15rem 1.3rem 1.55rem !important;
+            background: transparent !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+        h1, h2, h3, p {
+            letter-spacing: 0 !important;
+        }
+        h1 {
+            color: var(--ink-strong) !important;
+            font-size: 1.62rem !important;
+            line-height: 1.18 !important;
+            font-weight: 760 !important;
+        }
+        .dashboard-header {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 0.15rem 0 1.05rem;
+            padding: 1rem 1.05rem;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(246, 250, 253, 0.96)),
+                linear-gradient(90deg, rgba(31, 90, 166, 0.06), rgba(24, 123, 141, 0.045));
+            box-shadow: var(--shadow-soft);
+        }
+        .dashboard-title {
+            min-width: 0;
+        }
+        .dashboard-eyebrow {
+            margin-bottom: 0.35rem;
+            color: var(--blue-800);
+            font-size: 0.72rem;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase;
+        }
+        .dashboard-title h1 {
+            margin: 0 0 0.35rem !important;
+        }
+        .dashboard-subtitle {
+            color: var(--muted);
+            font-size: 0.88rem;
+            line-height: 1.45;
+        }
+        .dashboard-meta-card {
+            display: flex;
+            min-width: 245px;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.35rem;
+            padding: 0.75rem 0.85rem;
+            border: 1px solid #dbe5ef;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+            text-align: right;
+        }
+        .dashboard-meta-label {
+            color: var(--muted-soft);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em !important;
+            text-transform: uppercase;
+        }
+        .dashboard-meta-file {
+            color: var(--ink-strong);
+            font-size: 0.86rem;
+            font-weight: 750;
+            word-break: break-word;
+        }
+        .login-brand {
+            margin: 2.25rem auto 1rem;
+            text-align: center;
+        }
+        .login-brand-title {
+            margin-top: 0.75rem;
+            color: var(--ink-strong);
+            font-size: 1.35rem;
+            line-height: 1.18;
+            font-weight: 820;
+        }
+        .login-brand-copy {
+            margin: 0.45rem auto 1.1rem;
+            max-width: 360px;
+            color: var(--muted);
+            font-size: 0.86rem;
+            line-height: 1.45;
+        }
+        [data-testid="stForm"] {
+            padding: 1.05rem !important;
+            border: 1px solid var(--line) !important;
+            border-radius: 8px !important;
+            background: rgba(255, 255, 255, 0.96) !important;
+            box-shadow: var(--shadow-card) !important;
+        }
+        [data-testid="stForm"] label p {
+            color: #526173 !important;
+            font-size: 0.78rem !important;
+            font-weight: 760 !important;
+        }
+        .status-pill {
+            align-self: flex-end;
+            display: inline-flex !important;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.24rem 0.55rem !important;
+            border: 1px solid #cfe0ef;
+            border-radius: 999px !important;
+            background: #eef5fb !important;
+            color: #315b80 !important;
+            font-size: 0.72rem !important;
+            font-weight: 760 !important;
+        }
+        .kpi-grid {
+            grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+            gap: 0.78rem !important;
+            margin: 0.85rem 0 0.95rem !important;
+        }
+        .kpi-card {
+            position: relative;
+            grid-template-columns: 56px minmax(0, 1fr) !important;
+            min-height: 118px !important;
+            padding: 0.9rem 0.95rem !important;
+            overflow: hidden;
+            border: 1px solid var(--line) !important;
+            border-radius: 8px !important;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 251, 253, 0.96)) !important;
+            box-shadow: var(--shadow-card) !important;
+            transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+        }
+        .kpi-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue-800), #73a6cc);
+            opacity: 0.78;
+        }
+        .kpi-card.kpi-gm::before,
+        .kpi-card.kpi-gauge::before {
+            background: linear-gradient(90deg, #e67e22, #f2c94c, #72a98f);
+        }
+        .kpi-card.kpi-jobs::before {
+            background: linear-gradient(90deg, #6f9a85, #9abfdd);
+        }
+        .kpi-card.kpi-month::before {
+            background: linear-gradient(90deg, #2f6fae, #9abfdd);
+        }
+        .kpi-card:hover {
+            border-color: #cdd9e6 !important;
+            box-shadow: 0 16px 34px rgba(20, 34, 55, 0.10) !important;
+            transform: translateY(-1px);
+        }
+        .kpi-card.gauge-kpi {
+            grid-template-columns: 96px minmax(0, 1fr) !important;
+            gap: 0.6rem !important;
+        }
+        .kpi-icon {
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 8px !important;
+            background: linear-gradient(135deg, #edf5fb, #f7fbfd) !important;
+            box-shadow: inset 0 0 0 1px rgba(156, 178, 199, 0.28);
+        }
+        .kpi-icon.image-icon img {
+            width: 44px !important;
+            height: 44px !important;
+        }
+        .kpi-icon.gm-image-icon img {
+            width: 48px !important;
+            height: 48px !important;
+        }
+        .kpi-icon.month-icon {
+            color: #2f6fae !important;
+            font-size: 0.92rem !important;
+            font-weight: 820;
+        }
+        .kpi-icon.jobs-icon::before,
+        .kpi-icon.month-icon::before {
+            transform: scale(0.78);
+            transform-origin: 50% 50%;
+        }
+        .kpi-label {
+            color: var(--muted) !important;
+            font-size: 0.76rem !important;
+            line-height: 1.2 !important;
+            font-weight: 760 !important;
+            letter-spacing: 0 !important;
+            text-transform: none;
+        }
+        .kpi-value {
+            margin-top: 0.5rem !important;
+            color: var(--ink-strong) !important;
+            font-size: clamp(1.3rem, 1.72vw, 1.72rem) !important;
+            line-height: 1.06 !important;
+            font-weight: 780 !important;
+        }
+        .kpi-note {
+            margin-top: 0.45rem !important;
+            color: var(--muted-soft) !important;
+            font-size: 0.7rem !important;
+            line-height: 1.25 !important;
+        }
+        .gauge-meter {
+            width: 96px !important;
+            transform: scale(0.84);
+            transform-origin: left center;
+        }
+        .gauge-scale {
+            display: none !important;
+        }
+        .gauge-arc::after {
+            background: #fbfdff !important;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin: 0 0 0.65rem !important;
+            color: var(--ink-strong) !important;
+            font-size: 0.93rem !important;
+            line-height: 1.25;
+            font-weight: 800 !important;
+        }
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 1rem;
+            border-radius: 999px;
+            background: linear-gradient(180deg, var(--blue-800), #7da693);
+        }
+        [data-testid="stVerticalBlockBorderWrapper"] {
+            border: 1px solid var(--line) !important;
+            border-radius: 8px !important;
+            background: var(--surface) !important;
+            box-shadow: var(--shadow-card) !important;
+        }
+        [data-testid="stVerticalBlockBorderWrapper"] > div {
+            border-radius: 8px !important;
+        }
+        [data-testid="stVerticalBlockBorderWrapper"] [data-testid="stVerticalBlock"] {
+            gap: 0.55rem;
+        }
+        [data-testid="stSegmentedControl"] {
+            margin: 0.15rem 0 0.95rem !important;
+        }
+        [data-testid="stSegmentedControl"] [role="radiogroup"] {
+            gap: 4px !important;
+            padding: 4px !important;
+            border: 1px solid #d8e2ec !important;
+            border-radius: 8px !important;
+            background: #edf3f8 !important;
+            box-shadow: none !important;
+        }
+        [data-testid="stSegmentedControl"] label,
+        [data-testid="stSegmentedControl"] button[kind^="segmented_control"] {
+            min-height: 32px !important;
+            border-radius: 6px !important;
+            color: #536276 !important;
+            font-size: 0.84rem !important;
+            font-weight: 760 !important;
+        }
+        [data-testid="stSegmentedControl"] label:has(input:checked),
+        [data-testid="stSegmentedControl"] label[aria-checked="true"],
+        [data-testid="stSegmentedControl"] button[kind="segmented_controlActive"] {
+            background: linear-gradient(135deg, #123b63, #1f5aa6) !important;
+            border-color: #1f5aa6 !important;
+            box-shadow: 0 7px 16px rgba(31, 90, 166, 0.22) !important;
+        }
+        [data-testid="stMain"] div[data-baseweb="select"] > div,
+        [data-testid="stMain"] div[data-baseweb="input"] > div,
+        [data-testid="stMain"] textarea {
+            min-height: 2.35rem;
+            border-radius: 7px !important;
+            border-color: #d4dde8 !important;
+            background-color: #ffffff !important;
+            box-shadow: inset 0 0 0 1px #d4dde8 !important;
+        }
+        [data-testid="stMain"] div[data-baseweb="select"] > div:focus-within,
+        [data-testid="stMain"] div[data-baseweb="input"] > div:focus-within,
+        [data-testid="stMain"] textarea:focus {
+            border-color: var(--blue-700) !important;
+            box-shadow: 0 0 0 3px rgba(47, 111, 174, 0.14), inset 0 0 0 1px var(--blue-700) !important;
+        }
+        div[data-baseweb="tag"] {
+            border-radius: 999px !important;
+            background: #eaf2f9 !important;
+            color: #315b80 !important;
+            border-color: #c8dae9 !important;
+            font-weight: 720 !important;
+        }
+        .stButton > button,
+        [data-testid="stFormSubmitButton"] button {
+            border-radius: 7px !important;
+            min-height: 2.4rem;
+            font-weight: 760 !important;
+            box-shadow: none !important;
+        }
+        .stButton > button[kind="primary"],
+        [data-testid="stFormSubmitButton"] button[kind="primary"] {
+            border-color: #1f5aa6 !important;
+            background: linear-gradient(135deg, #123b63, #1f5aa6) !important;
+        }
+        [data-testid="stDataFrame"] {
+            border: 1px solid #dfe7ef;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 7px 20px rgba(20, 34, 55, 0.045);
+        }
+        [data-testid="stDataFrame"] [role="columnheader"] {
+            background: #f3f7fb !important;
+            color: #46556a !important;
+            font-weight: 800 !important;
+        }
+        [data-testid="stAlert"] {
+            border-radius: 8px !important;
+            border-color: #dfe7ef !important;
+            box-shadow: 0 6px 16px rgba(20, 34, 55, 0.045);
+        }
+        div[data-testid="stFileUploader"] section {
+            border-radius: 8px !important;
+            border-color: #cbd8e6 !important;
+            background: #f8fbfd !important;
+        }
+        .stExpander {
+            border-radius: 8px !important;
+            border-color: #dfe7ef !important;
+        }
+        [data-testid="stImage"] img {
+            max-width: 100%;
+        }
+        @media (max-width: 1240px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+        }
+        @media (max-width: 760px) {
+            .block-container {
+                padding: 0.85rem 0.85rem 1.2rem !important;
+            }
+            .dashboard-header {
+                flex-direction: column;
+            }
+            .dashboard-meta-card {
+                text-align: left;
+                min-width: 0;
+            }
+            .status-pill {
+                align-self: flex-start;
+            }
+            .kpi-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
         </style>
         """,
         unsafe_allow_html=True,
@@ -752,18 +1179,25 @@ def current_month(df: pd.DataFrame) -> int | None:
 
 
 def page_header(title: str, subtitle: str, data_path: Path, df: pd.DataFrame) -> None:
-    left, right = st.columns([0.72, 0.28], vertical_alignment="center")
-    with left:
-        st.title(title)
-        st.markdown(f"<div class='subtle'>{subtitle}</div>", unsafe_allow_html=True)
-    with right:
-        month = current_month(df)
-        month_text = f"{month}月" if month else "N/A"
-        st.markdown(
-            f"<div class='subtle' style='text-align:right;'>Data file<br><b>{data_path.name}</b><br>"
-            f"<span class='status-pill'>{len(df):,} rows · {month_text}</span></div>",
-            unsafe_allow_html=True,
-        )
+    month = current_month(df)
+    month_text = f"{month}月" if month else "N/A"
+    st.markdown(
+        (
+            "<div class='dashboard-header'>"
+            "<div class='dashboard-title'>"
+            "<div class='dashboard-eyebrow'>HEC Dashboard</div>"
+            f"<h1>{escape(title)}</h1>"
+            f"<div class='dashboard-subtitle'>{escape(subtitle)}</div>"
+            "</div>"
+            "<div class='dashboard-meta-card'>"
+            "<div class='dashboard-meta-label'>Data file</div>"
+            f"<div class='dashboard-meta-file'>{escape(data_path.name)}</div>"
+            f"<span class='status-pill'>{len(df):,} rows · {month_text}</span>"
+            "</div>"
+            "</div>"
+        ),
+        unsafe_allow_html=True,
+    )
 
 
 def render_kpi_cards(cards: list[dict[str, str]]) -> None:
@@ -783,7 +1217,7 @@ def render_kpi_cards(cards: list[dict[str, str]]) -> None:
             needle_angle = -90 + gauge_angle
             empty_class = "" if has_value else " is-empty"
             html.append(
-                f"<div class='kpi-card gauge-kpi{empty_class}'>"
+                f"<div class='kpi-card gauge-kpi kpi-gauge{empty_class}'>"
                 f"<div class='gauge-meter' style='--gauge-angle: {gauge_angle:.1f}deg; --needle-angle: {needle_angle:.1f}deg;'>"
                 "<div class='gauge-arc'><div class='gauge-fill'></div></div>"
                 "<div class='gauge-needle'></div>"
@@ -817,7 +1251,7 @@ def render_kpi_cards(cards: list[dict[str, str]]) -> None:
             else:
                 icon_html = f"<div class='kpi-icon'><span>{icon}</span></div>"
             html.append(
-                "<div class='kpi-card'>"
+                f"<div class='kpi-card kpi-{escape(icon_type or 'default')}'>"
                 f"{icon_html}"
                 "<div>"
                 f"<div class='kpi-label'>{label}</div>"
@@ -835,8 +1269,15 @@ def login_view() -> None:
     with col2:
         if LOGO_PATH.exists():
             st.image(str(LOGO_PATH), width=140)
-        st.markdown("### HEC Team Financial Dashboard")
-        st.markdown("<div class='subtle'>Use your team account or Finance BP account to continue.</div>", unsafe_allow_html=True)
+        st.markdown(
+            (
+                "<div class='login-brand'>"
+                "<div class='login-brand-title'>HEC Team Financial Dashboard</div>"
+                "<div class='login-brand-copy'>Use your team account or Finance BP account to continue.</div>"
+                "</div>"
+            ),
+            unsafe_allow_html=True,
+        )
         with st.form("login_form"):
             username = st.text_input("Username", placeholder="bp or Team_Name_Official")
             password = st.text_input("Password", type="password")
@@ -1027,21 +1468,21 @@ def financial_page(df: pd.DataFrame, data_path: Path, selected_team: str | None)
                 showlegend=False,
             )
         fig.update_layout(
-            height=340,
-            margin=dict(l=8, r=8, t=18, b=4),
+            height=352,
+            margin=dict(l=12, r=12, t=24, b=8),
             yaxis_title="AOT",
             xaxis_title=None,
-            plot_bgcolor="white",
-            paper_bgcolor="white",
-            font=dict(color="#4b5563", size=12),
+            plot_bgcolor="rgba(0,0,0,0)",
+            paper_bgcolor="rgba(0,0,0,0)",
+            font=dict(color="#526173", size=12),
             uniformtext=dict(mode="show", minsize=11),
             bargap=0.36,
             barmode="relative",
         )
         fig.update_traces(textfont=dict(color="#243b53", size=12, weight=700))
-        fig.update_yaxes(gridcolor="#edf0f4", zerolinecolor="#dfe3ea")
-        fig.update_xaxes(tickfont=dict(color="#5f6675"))
-        st.plotly_chart(fig, width="stretch")
+        fig.update_yaxes(gridcolor="#e9eef4", zerolinecolor="#d7e0ea", title_font=dict(color="#607086"))
+        fig.update_xaxes(tickfont=dict(color="#607086"))
+        st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
 
     left, right = st.columns([0.58, 0.42])
     with left:
@@ -1059,21 +1500,22 @@ def financial_page(df: pd.DataFrame, data_path: Path, selected_team: str | None)
                 x="YTD_AOT",
                 y="Parent_Client_Name",
                 orientation="h",
-                color_discrete_sequence=["#0796a8"],
+                color_discrete_sequence=["#7da693"],
                 text_auto=".2s",
             )
+            fig_client.update_traces(marker_line_width=0, opacity=0.96, textfont=dict(color="#2f4f45", weight=700))
             fig_client.update_layout(
                 height=420,
-                margin=dict(l=8, r=8, t=20, b=8),
+                margin=dict(l=10, r=12, t=20, b=10),
                 xaxis_title="YTD AOT",
                 yaxis_title=None,
-                plot_bgcolor="white",
-                paper_bgcolor="white",
-                font=dict(color="#4b5563", size=12),
+                plot_bgcolor="rgba(0,0,0,0)",
+                paper_bgcolor="rgba(0,0,0,0)",
+                font=dict(color="#526173", size=12),
             )
-            fig_client.update_xaxes(gridcolor="#edf0f4", zerolinecolor="#dfe3ea")
-            fig_client.update_yaxes(tickfont=dict(color="#7a8190"))
-            st.plotly_chart(fig_client, width="stretch")
+            fig_client.update_xaxes(gridcolor="#e9eef4", zerolinecolor="#d7e0ea")
+            fig_client.update_yaxes(tickfont=dict(color="#607086"))
+            st.plotly_chart(fig_client, width="stretch", config={"displayModeBar": False})
     with right:
         with st.container(border=True):
             st.markdown("<div class='section-title'>YTD AOT by Product</div>", unsafe_allow_html=True)
@@ -1102,17 +1544,22 @@ def financial_page(df: pd.DataFrame, data_path: Path, selected_team: str | None)
                     names="Product_Name",
                     values="YTD_AOT",
                     hole=0.58,
-                    color_discrete_sequence=["#0796a8", "#ff8a00", "#cf1f5a", "#f4bd16", "#d8d8d8"],
+                    color_discrete_sequence=["#1f5aa6", "#7da693", "#8fb6d8", "#e0b052", "#b9c5d2", "#6f8fa8"],
                 )
-                fig_product.update_traces(textposition="outside", textinfo="percent", marker=dict(line=dict(color="#ffffff", width=2)))
+                fig_product.update_traces(
+                    textposition="outside",
+                    textinfo="percent",
+                    textfont=dict(color="#334155", weight=700),
+                    marker=dict(line=dict(color="#ffffff", width=2)),
+                )
                 fig_product.update_layout(
                     height=420,
-                    margin=dict(l=8, r=8, t=20, b=8),
-                    paper_bgcolor="white",
-                    font=dict(color="#4b5563", size=12),
+                    margin=dict(l=10, r=10, t=20, b=10),
+                    paper_bgcolor="rgba(0,0,0,0)",
+                    font=dict(color="#526173", size=12),
                     legend=dict(orientation="v", yanchor="middle", y=0.52, xanchor="left", x=1.02),
                 )
-                st.plotly_chart(fig_product, width="stretch")
+                st.plotly_chart(fig_product, width="stretch", config={"displayModeBar": False})
 
 
 def format_project_table(df: pd.DataFrame) -> pd.DataFrame:
@@ -1128,10 +1575,14 @@ def format_project_table(df: pd.DataFrame) -> pd.DataFrame:
 
 def alert_message_style(value: str) -> str:
     if value == "需要尽快GTJ":
-        return "color: #d87920; font-weight: 800;"
+        return "color: #a94f00; font-weight: 900;"
     if value == "需检查是否有首付款未开":
-        return "color: #c94f7c; font-weight: 800;"
+        return "color: #9f234f; font-weight: 900;"
     return ""
+
+
+def pinned_detail_style(_: object) -> str:
+    return "color: #111827; font-weight: 760;"
 
 
 def project_page(df: pd.DataFrame, data_path: Path) -> None:
@@ -1205,14 +1656,19 @@ def project_page(df: pd.DataFrame, data_path: Path) -> None:
         base = base.assign(_sort_job_end_date=pd.to_datetime(base["Job_End_Date"], errors="coerce"))
         base = base.sort_values("_sort_job_end_date", ascending=True, na_position="last").drop(columns=["_sort_job_end_date"])
 
+    project_table = format_project_table(base)
+    if "Record_Detail" in project_table.columns:
+        project_table = project_table.style.map(pinned_detail_style, subset=["Record_Detail"])
+
     st.dataframe(
-        format_project_table(base),
+        project_table,
         width="stretch",
         hide_index=True,
         column_config={
-            "Revenue_Forecast": st.column_config.NumberColumn("Revenue_Forecast", format="¥ %.0f"),
-            "YTD_AOT": st.column_config.NumberColumn("YTD_AOT", format="¥ %.0f"),
-            "YTD_TO": st.column_config.NumberColumn("YTD_TO", format="¥ %.0f"),
+            "Record_Detail": st.column_config.TextColumn("Record_Detail", pinned=True),
+            "Revenue_Forecast": st.column_config.NumberColumn("Revenue_Forecast", format="¥ %,.0f"),
+            "YTD_AOT": st.column_config.NumberColumn("YTD_AOT", format="¥ %,.0f"),
+            "YTD_TO": st.column_config.NumberColumn("YTD_TO", format="¥ %,.0f"),
             "GM_Forecast_Percentage": st.column_config.TextColumn("GM Forecast %"),
             "Job Progress%": st.column_config.ProgressColumn(
                 "Job Progress%",
@@ -1258,13 +1714,18 @@ def project_page(df: pd.DataFrame, data_path: Path) -> None:
             "YTD_AOT",
         ]
         alert_view = alert_df[[col for col in cols if col in alert_df.columns]]
+        alert_styler = alert_view.style
         if "提示信息" in alert_view.columns:
-            alert_view = alert_view.style.map(alert_message_style, subset=["提示信息"])
+            alert_styler = alert_styler.map(alert_message_style, subset=["提示信息"])
+        if "Record_Detail" in alert_view.columns:
+            alert_styler = alert_styler.map(pinned_detail_style, subset=["Record_Detail"])
         st.dataframe(
-            alert_view,
+            alert_styler,
             width="stretch",
             hide_index=True,
             column_config={
+                "提示信息": st.column_config.TextColumn("提示信息", pinned=True),
+                "Record_Detail": st.column_config.TextColumn("Record_Detail", pinned=True),
                 "Job Progress%": st.column_config.ProgressColumn(
                     "Job Progress%",
                     format="percent",
